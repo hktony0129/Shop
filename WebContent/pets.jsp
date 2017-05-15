@@ -66,6 +66,7 @@
 <body>
 <c:if test="${sessionScope.username == null }">
 	<c:set  var="username"  value="Guest"  scope="session"  />
+	<c:set  var="pets"  value=""  scope="session"  />
 </c:if>
 <c:if test="${param.page == null}">
 	<c:redirect url="PetsController?page=1"/>

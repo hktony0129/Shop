@@ -17,12 +17,35 @@ public class AddToCartController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserService us = new UserService();
+		
 		HttpSession session = request.getSession(false); 
-		String name = (String)session.getAttribute("username"); 
-		name = URLDecoder.decode(name,"UTF-8");
+		String name = (String)session.getAttribute("username");
 		int PetId = Integer.parseInt(request.getParameter("petId"));
-		boolean redirect = us.addPet(name, PetId);
+		name = URLDecoder.decode(name,"UTF-8");
+		boolean redirect = true;
+		if (name.equals("Guest")){
+			
+			String oldpets = (String) session.getAttribute("pets");
+			
+			if (!oldpets.equals("")){
+				String[] animalsArray = oldpets.split(",");
+				for (String element : animalsArray){
+					if(element.equals(PetId)){
+						redirect = false;
+					}
+				}
+				if (redirect){
+					session.setAttribute("pets", oldpets + "," + PetId);
+				}
+			} else {
+				session.setAttribute("pets", PetId);
+			}
+
+		} else {
+			UserService us = new UserService();
+			redirect = us.addPet(name, PetId);
+		}
+		
 		response.sendRedirect("added.jsp?result=" + redirect);
 	}
 

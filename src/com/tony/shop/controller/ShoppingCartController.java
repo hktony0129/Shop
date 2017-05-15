@@ -25,9 +25,15 @@ public class ShoppingCartController extends HttpServlet {
 		HttpSession session = request.getSession(false); 
 		String name = (String)session.getAttribute("username"); 
 		name = URLDecoder.decode(name,"UTF-8");
+		String pets;
 		
-		UserService us = new UserService();	
-		String pets = "(" + us.getPets(name) + ")";
+		if (name.equals("Guest")){
+			pets = "(" + session.getAttribute("pets") + ")";
+		} else {
+			UserService us = new UserService();	
+			pets = "(" + us.getPets(name) + ")";
+		}
+		
 		List<Pet> petsList = ps.getById(pets);
 		
 		RequestDispatcher view = request.getRequestDispatcher("shoppingCart.jsp");
