@@ -138,7 +138,7 @@ String decoded = URLDecoder.decode(username,"UTF-8");%>
 	    <tr>
   	      <fmt:parseNumber var="i" integerOnly="true" type="number" value="${(pet.id - 1) / 8 + 1}" />
   	      <td class="col-md-1"><a href="PetsController?page=<c:url value="${i}"/>#<c:url value="${pet.id}"/>"><img src="IMG/pets/<c:url value="${pet.id}"/>.jpg" onerror="if (this.src != 'IMG/pets/default.jpg') this.src = 'IMG/pets/default.jpg';" class="img-rounded" height="60"></a></td>
-  	      <td class="col-md-2 text-center vert-align "><a href="PetsController?page=<c:url value="${i}"/>#<c:url value="${pet.id}"/>"><c:out value="${pet.name}" /></a></td>
+  	      <td class="col-md-2 text-center vert-align "><a href="PetsController?page=<c:url value="${i}"/>#<c:url value="${pet.id}"/>"><c:out value="${pet.breed}" /></a></td>
   	      <td class="col-md-6 text-center vert-align"><span class="<c:out value="${pet.type}" />"><c:out value="${pet.type}" /></span>, <span class="age">Age</span>: <c:out value="${pet.age}" /></td>
   	      <td class="col-md-1 text-center vert-align"><input class = "inputs" type="number" min="1" max = "20" step="1" value="1" oninput="myFunction()"/></td>
   	      <td class="col-md-1 text-center vert-align prices">$<c:out value="${pet.price}" /></td>

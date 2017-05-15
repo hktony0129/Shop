@@ -176,7 +176,7 @@ String decoded = URLDecoder.decode(username,"UTF-8");%>
       	<br>
       	<c:set var="subtotal" value="${0}"/>
       	<c:forEach items="${pets}" var="pet" varStatus="status">
-      	  &nbsp;&nbsp;<c:out value="${pet.name}"/></a>
+      	  &nbsp;&nbsp;<c:out value="${pet.breed}"/></a>
   	      $<c:out value="${pet.price}" /> * <c:out value="${amounts[status.index]}" /> = $<c:out value="${amounts[status.index] * pet.price}" />
   	      <c:set var="subtotal" value="${subtotal + amounts[status.index] * pet.price}"/>  
   	      <br>
